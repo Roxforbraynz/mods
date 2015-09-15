@@ -8,36 +8,30 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import rox.base.Methods;
 
 public class ItemWarpStone extends Item{
-	//Blank item
-	public static Item warp_stone;
 	
-	//Called in Core to initialize the item. Rendering is handled in ClientProxy.
-	public static void init(){
-		//Tells the blank item to pull code from this class.
-		warp_stone = new ItemWarpStone()
-			//Some settings for the item.
-			
-			//The name of the item when referred to by commands and the .lang file.
-			.setUnlocalizedName("warp_stone")
-			//Stack size, this item will take damage as it's used, so keep this at 1.
-			.setMaxStackSize(1)
-			//The item's durability. The amount of times an item can be used is always
-			//1 more than it's durability. Here, the Warp Stone can be used 16 times.
-			.setMaxDamage(15)
-			//Assigns a creative tab. Since this mod only has one item, I'm assigning
-			//it to a vanilla tab; Tools.
-			.setCreativeTab(CreativeTabs.tabTools);
+	public ItemWarpStone() {
+		//Some settings for the item.
+		super();
+		//The name of the item when referred to by commands and the .lang file.
+		this.setUnlocalizedName("warp_stone");
+		//Stack size, this item will take damage as it's used, so keep this at 1.
+		this.setMaxStackSize(1);
+		//The item's durability. The amount of times an item can be used is always
+		//1 more than it's durability. Here, the Warp Stone can be used 16 times.
+		this.setMaxDamage(15);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+		//Assigns a creative tab. Since this mod only has one item, I'm assigning
+		//it to a vanilla tab; Tools.
+		this.setCreativeTab(CreativeTabs.tabTools);
 		
-		//Registering the item.
-		Methods.registerItem(warp_stone);
+		
 	}
 	
 	@Override
@@ -59,7 +53,9 @@ public class ItemWarpStone extends Item{
 			stack.getTagCompound().setTag("coords", nbt);
 			
 			//Tells the player that the warp stone was bound successfully.
-			Methods.tellPlayer(player, (EnumChatFormatting.GREEN + "Location bound!"));
+			if(!player.worldObj.isRemote){
+				player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Location bound!"));
+			}
 		}
 		//Return statement is necessary. Returning false works just fine.
 		return false;
@@ -96,7 +92,9 @@ public class ItemWarpStone extends Item{
 					//If the player isn't in the same dimension as the stone is bound to then
 					//tell the player that they can't warp across dimensions.
 					else{
-						Methods.tellPlayer(player, (EnumChatFormatting.RED + "You can't warp across dimensions!"));
+						if(!player.worldObj.isRemote){
+							player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "You can't warp across dimensions!"));
+						}
 					}
 				}
 			}
@@ -106,8 +104,10 @@ public class ItemWarpStone extends Item{
 				//I used two tellPlayer() methods here since this message spans two lines.
 				//The color resets whenever a string goes onto a new line for some odd reason.
 				//I can't fix it since it's a problem with Forge or Minecraft so this is a work-around.
-				Methods.tellPlayer(player, (EnumChatFormatting.YELLOW + "You haven't bound a location yet! Sneak and use the item on a"));
-				Methods.tellPlayer(player, (EnumChatFormatting.YELLOW + "block to bind it to that block."));
+				if(!player.worldObj.isRemote){
+					player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You haven't bound a location yet! Sneak and use the item on a"));
+					player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "block to bind it to that block."));
+				}
 			}
 		}
 		//Returning the stack is necessary.
