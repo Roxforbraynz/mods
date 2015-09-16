@@ -4,22 +4,10 @@ public class Octree {
 	
 	//The root node of the tree.
 	private OctreeNode root;
-	private int xmin;
-	private int xmax;
-	private int ymin;
-	private int ymax;
-	private int zmin;
-	private int zmax;
 	
-	public Octree(int xmin, int xmax, int ymin, int ymax, int zmin, int zmax) {
-		this.xmin = xmin;
-		this.xmax = xmax;
-		this.ymin = ymin;
-		this.ymax = ymax;
-		this.zmin = zmin;
-		this.zmax = zmax;
-		
-		root = new OctreeNode();
+	
+	public Octree(int xwidth, int yheight, int zdepth, Location origin) {
+		root = new OctreeNode(xwidth, yheight, zdepth, origin);
 	}
 	
 	public void insert(Location loc) {
@@ -34,15 +22,27 @@ public class Octree {
 		
 		//Data held by the node
 		private Location data;
-		
 		//This node's parent. Null if root node.
 		private OctreeNode parent;
-		
 		//This node's children. 8 elements long.
 		private OctreeNode children[];
 		
-		public OctreeNode() {
+		//Dimensions of the bounding box.
+		private int xwidth;
+		private int yheight;
+		private int zdepth;
+		
+		//Only for making a root node
+		public OctreeNode(int xwidth, int yheight, int zdepth, Location origin) {
+			this.xwidth = xwidth;
+			this.yheight = yheight;
+			this.zdepth = zdepth;
 			this.children = new OctreeNode[8];
+			
+			//Make empty children so that the root node is considered an interior node.
+			for (int i=0; i>8; i++) {
+				this.children[i] = new OctreeNode(this);
+			}
 		}
 		
 		public OctreeNode(OctreeNode parent) {
@@ -52,54 +52,88 @@ public class Octree {
 		public OctreeNode(Location loc, OctreeNode parent) {
 			this.data = loc;
 			this.parent = parent;
+			this.xwidth = parent.xwidth/2;
+			this.yheight = parent.yheight/2;
+			this.zdepth = parent.zdepth/2;
+			
+			this.children = new OctreeNode[8];
 		}
 		
 		public boolean isLeaf() {
 			//If all children are null, this is a leaf node, else it's an interior node.
-			return (children[0] == null 
-					&& children[1] == null 
-					&& children[2] == null 
-					&& children[3] == null 
-					&& children[4] == null 
-					&& children[5] == null 
-					&& children[6] == null 
-					&& children[7] == null)? true : false;
+			return (this.children[0] == null 
+					&& this.children[1] == null 
+					&& this.children[2] == null 
+					&& this.children[3] == null 
+					&& this.children[4] == null 
+					&& this.children[5] == null 
+					&& this.children[6] == null 
+					&& this.children[7] == null)? true : false;
 		}
 		
 		public boolean hasData() {
-			return (data != null)? true : false;
+			return (this.data != null)? true : false;
 		}
 		
 		public void insert(Location loc) {
 			if (!isLeaf()) {
 				//determine the index to run the insert on.
-				int index = 0;
-				//If the x value of the node is larger than the x value of the
-				//provided point, set the 1's place bit
-				index = (((loc.getX() - data.getX()) >> 31 ) & 0x1 );
-				//If the y value of the node is larger than the y value of the
-				//provided point, set the 2's place bit
-				index = ((((loc.getY() - data.getY()) >> 31 ) & 0x1 ) << 1 ) ^ index;
-				//If the z value of the node is larger than the z value of the
-				//provided point, set the 4's place bit
-				index = ((((loc.getZ() - data.getZ()) >> 31 ) & 0x1 ) << 2 ) ^ index;
+				int index = pickIndex(loc);
 				
 				//If the child isn't initialized do so and insert.
-				if (children[index] == null) {
-					children[index] = new OctreeNode(loc, this);
+				if (this.children[index] == null) {
+					this.children[index] = new OctreeNode(loc, this);
 				}
 				//Else recurse in and insert.
 				else {
-					children[index].insert(loc);
+					this.children[index].insert(loc);
 				}
 			}
 			else if (hasData()) {
-				//Back up, make a new interior node, and then keep making interior nodes until both this node and the new coordinates can be placed as leaves.
+				//Back up, make a new interior node, place this as a child of the new interior node, and then insert the loc in the new parent.
+				
+				//Get the index of this node in relation to the parent. 
+				int index = parent.pickIndex(this.data);
+				
+				//Create the interior center point for this new interior child.
+				Location inLoc = new Location(0,((index&0x1)==0x1)?parent.data.getX()+(xwidth/2):parent.data.getX()-(xwidth/2),
+											((index&0x2)==0x2)?parent.data.getY()+(yheight/2):parent.data.getY()-(yheight/2),
+											((index&0x4)==0x4)?parent.data.getZ()+(zdepth/2):parent.data.getZ()-(zdepth/2));
+				
+				//Make the new interior child
+				parent.children[index] = new OctreeNode(inLoc, parent);
+				//grab the new node to use as a parent.
+				parent = parent.children[index];
+				//Attach this node as a new leaf of the new parent.
+				parent.children[parent.pickIndex(this.data)] = this;
+				//Insert a new node on the parent.
+				parent.insert(loc);
 			}
 			else {
 				this.data = loc;
 			}
 		}
+		
+		/**
+		 * Picks the children index a given location points toward.
+		 * @param loc The location
+		 * @return The index
+		 */
+		private int pickIndex(Location loc) {
+			int index = 0;
+			//If the x value of the node is smaller than the x value of the
+			//provided point, set the 1's place bit
+			index = ((this.data.getX() - loc.getX()) >> 31 ) & 0x1;
+			//If the y value of the node is smaller than the y value of the
+			//provided point, set the 2's place bit
+			index = ((((this.data.getY() - loc.getY()) >> 31 ) & 0x1 ) << 1 ) ^ index;
+			//If the z value of the node is smaller than the z value of the
+			//provided point, set the 4's place bit
+			index = ((((this.data.getZ() - loc.getZ()) >> 31 ) & 0x1 ) << 2 ) ^ index;
+			
+			return index;
+		}
+		
 	}
 	
 }
