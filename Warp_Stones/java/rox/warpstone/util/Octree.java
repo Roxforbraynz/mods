@@ -74,9 +74,15 @@ public class Octree {
 			if (!isLeaf()) {
 				//determine the index to run the insert on.
 				int index = 0;
-				index = (data.getX() > loc.getX())? index ^ 0x1 : index;
-				index = (data.getY() > loc.getY())? index ^ 0x2 : index;
-				index = (data.getZ() > loc.getZ())? index ^ 0x4 : index;
+				//If the x value of the node is larger than the x value of the
+				//provided point, set the 1's place bit
+				index = (((loc.getX() - data.getX()) >> 31 ) & 0x1 );
+				//If the y value of the node is larger than the y value of the
+				//provided point, set the 2's place bit
+				index = ((((loc.getY() - data.getY()) >> 31 ) & 0x1 ) << 1 ) ^ index;
+				//If the z value of the node is larger than the z value of the
+				//provided point, set the 4's place bit
+				index = ((((loc.getZ() - data.getZ()) >> 31 ) & 0x1 ) << 2 ) ^ index;
 				
 				//If the child isn't initialized do so and insert.
 				if (children[index] == null) {
@@ -87,8 +93,11 @@ public class Octree {
 					children[index].insert(loc);
 				}
 			}
-			if (!hasData()) {
-				data = loc;
+			else if (hasData()) {
+				//Back up, make a new interior node, and then keep making interior nodes until both this node and the new coordinates can be placed as leaves.
+			}
+			else {
+				this.data = loc;
 			}
 		}
 	}
