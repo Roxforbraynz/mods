@@ -14,6 +14,10 @@ public class Octree {
 		root.insert(loc);
 	}
 	
+	public Location findNearest(Location loc) {
+		return root.findNearest(loc);
+	}
+	
 	/*
 	 * Private class that makes up the tree itself. This is hidden from outside
 	 * code, with only what's in the Octree class exposed.
@@ -112,6 +116,109 @@ public class Octree {
 			else {
 				this.data = loc;
 			}
+		}
+
+		public Location findNearest(Location loc) {
+			
+			Location out = null;
+			
+			if (isLeaf()) {
+				out = this.data;
+			}
+			else {
+				//Get the index of the closest child. Check if it's not null.
+				//If null, check indexes that are one quadrant off.
+				//If those are null, check the remaining quadrants.
+				
+				//Grab the index of the closest child.
+				int index = pickIndex(loc);
+				
+				//If not null, call find nearest in that node.
+				if (this.children[index] != null) {
+					out = this.children[index].findNearest(loc);
+				}
+				//Else spread out and check other nodes.
+				else {
+					
+					int nearestIndex = 0;
+					int distanceToChild = Integer.MAX_VALUE;
+					
+					//Check neighboring quadrants.
+					if (this.children[(index^0x1)] != null) {
+						
+						int distanceTo = this.children[(index^0x1)].data.quickDistanceTo(loc);
+						
+						
+						if (distanceTo < distanceToChild) {
+							nearestIndex = index^0x1;
+							distanceToChild = distanceTo;
+						}
+					}
+					else if (this.children[(index^0x2)] != null) {
+						int distanceTo = this.children[(index^0x2)].data.quickDistanceTo(loc);						
+						
+						if (distanceTo < distanceToChild) {
+							nearestIndex = index^0x2;
+							distanceToChild = distanceTo;
+						}
+					}
+					else if (this.children[(index^0x4)] != null) {
+						int distanceTo = this.children[(index^0x4)].data.quickDistanceTo(loc);
+						
+						
+						if (distanceTo < distanceToChild) {
+							nearestIndex = index^0x4;
+							distanceToChild = distanceTo;
+						}
+					}
+					
+					
+					//Check non-neighboring quadrants if we didn't find a child yet.
+					if (distanceToChild == Integer.MAX_VALUE) {
+						if (this.children[(index^0x3)] != null) {
+							int distanceTo = this.children[(index^0x3)].data.quickDistanceTo(loc);
+							
+							
+							if (distanceTo < distanceToChild) {
+								nearestIndex = index^0x3;
+								distanceToChild = distanceTo;
+							}
+						}
+						else if (this.children[(index^0x5)] != null) {
+							int distanceTo = this.children[(index^0x5)].data.quickDistanceTo(loc);
+							
+							
+							if (distanceTo < distanceToChild) {
+								nearestIndex = index^0x5;
+								distanceToChild = distanceTo;
+							}
+						}
+						else if (this.children[(index^0x6)] != null) {
+							int distanceTo = this.children[(index^0x6)].data.quickDistanceTo(loc);
+							
+							
+							if (distanceTo < distanceToChild) {
+								nearestIndex = index^0x6;
+								distanceToChild = distanceTo;
+							}
+						}
+						else if (this.children[(index^0x7)] != null) {
+							int distanceTo = this.children[(index^0x7)].data.quickDistanceTo(loc);
+							
+							
+							if (distanceTo < distanceToChild) {
+								nearestIndex = index^0x7;
+								distanceToChild = distanceTo;
+							}
+						}
+					}
+					
+					out = this.children[nearestIndex].findNearest(loc);
+				}
+				
+			}
+			
+			return out;
 		}
 		
 		/**
