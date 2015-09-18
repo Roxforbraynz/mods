@@ -3,11 +3,11 @@ package rox.warpstone.util;
 public class Location {
 	
 	private int dim;
-	private int x;
-	private int y;
-	private int z;
+	private double x;
+	private double y;
+	private double z;
 	
-	public Location(int dim, int x, int y, int z) {
+	public Location(int dim, double x, double y, double z) {
 		this.dim = dim;
 		this.x = x;
 		this.y = y;
@@ -20,28 +20,28 @@ public class Location {
 	public void setDim(int dim) {
 		this.dim = dim;
 	}
-	public int getX() {
+	public double getX() {
 		return x;
 	}
-	public void setX(int x) {
+	public void setX(double x) {
 		this.x = x;
 	}
-	public int getY() {
+	public double getY() {
 		return y;
 	}
-	public void setY(int y) {
+	public void setY(double y) {
 		this.y = y;
 	}
-	public int getZ() {
+	public double getZ() {
 		return z;
 	}
-	public void setZ(int z) {
+	public void setZ(double z) {
 		this.z = z;
 	}
 	
-	public int accurateDistanceTo(Location loc) {
+	public double accurateDistanceTo(Location loc) {
 		//Slow due to square root and powering, but it's accurate.
-		return (int)Math.sqrt(Math.pow(this.x-loc.x, 2) + Math.pow(this.y-loc.y, 2) + Math.pow(this.z-loc.z, 2));
+		return Math.sqrt(Math.pow(this.x-loc.x, 2) + Math.pow(this.y-loc.y, 2) + Math.pow(this.z-loc.z, 2));
 	}
 	
 	/**
@@ -50,9 +50,9 @@ public class Location {
 	 * @param loc
 	 * @return
 	 */
-	public int quickDistanceTo(Location loc) {
+	public double quickDistanceTo(Location loc) {
 		//Not accurate at all, but should hopefully work for quick and dirty comparisons to other distances calculated this way.
-		return (int) (Math.pow(this.x - loc.x,2) + Math.pow(this.y - loc.y,2) + Math.pow(this.z - loc.z,2));
+		return Math.pow(this.x - loc.x,2) + Math.pow(this.y - loc.y,2) + Math.pow(this.z - loc.z,2);
 	}
 	
 }
