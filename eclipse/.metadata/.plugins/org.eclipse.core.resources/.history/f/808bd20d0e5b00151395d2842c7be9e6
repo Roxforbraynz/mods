@@ -1,8 +1,0 @@
-package rox.warpstone.proxy;
-
-public class ClientProxy extends ServerProxy{
-	@Override
-	public void setRenders(){
-		//Render items and blocks here
-	}
-}
