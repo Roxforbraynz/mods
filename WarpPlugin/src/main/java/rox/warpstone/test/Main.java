@@ -9,7 +9,6 @@ public class Main {
 		
 		//indexFindingTest();
 		octreeTest();
-		//interiorNodeTest();
 	}
 	
 	public static void indexFindingTest() {
@@ -108,15 +107,4 @@ public class Main {
 		//testPoints[0] = new Location(0,0,0,1);
 		//testPoints[1] = new Location(0,-3,4,-2);
 	}
-
-	public static void interiorNodeTest() {
-		//((index&0x1)!=0)?parent.data.getX()+(parent.xwidth/4.0):parent.data.getX()-(parent.xwidth/4.0),
-		//((index&0x2)!=0)?parent.data.getY()+(parent.yheight/4.0):parent.data.getY()-(parent.yheight/4.0),
-		//((index&0x4)!=0)?parent.data.getZ()+(parent.zdepth/4.0):parent.data.getZ()+(parent.zdepth/4.0)
-		
-		//double val = ((7&0x1)!=0)?-5+(10/4.0):-5-(10/4.0);
-		
-		//System.out.println(val);
-	}
-
 }

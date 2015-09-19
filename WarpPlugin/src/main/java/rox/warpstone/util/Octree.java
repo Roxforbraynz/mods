@@ -1,5 +1,8 @@
 package rox.warpstone.util;
 
+import java.util.Collection;
+import java.util.LinkedList;
+
 public class Octree {
 	
 	//The root node of the tree.
@@ -31,6 +34,11 @@ public class Octree {
 	 */
 	public Location findNearest(Location loc) {
 		return root.findNearest(loc);
+	}
+	
+	//Return a collection of all points inserted into this tree.
+	public Collection<Location> getPoints() {
+		return root.getPoints((Collection<Location>) new LinkedList<Location>());
 	}
 	
 	/*
@@ -65,6 +73,30 @@ public class Octree {
 			}
 		}
 		
+		/**
+		 * Get a collection of all stored points in a tree.
+		 * @param collection
+		 * @return
+		 */
+		public Collection<Location> getPoints(Collection<Location> collection) {
+			//If we are in a leaf with data, add the point to the collection
+			if (this.isLeaf()) {
+				//Separate so we can else the interior node.
+				if (data != null) {
+					collection.add(data);
+				}
+				//We don't care about leaves with no data.
+			}
+			//Else not a leaf, recurse into each child.
+			else {
+				for(int i=0; i<8; i++) {
+					collection = children[i].getPoints(collection);
+				}
+			}
+			
+			return collection;
+		}
+
 		public OctreeNode(OctreeNode parent, boolean interior) {
 			this(null, parent, interior);
 		}
@@ -235,12 +267,10 @@ public class Octree {
 							}
 						}
 					}
-					
 					out = this.children[nearestIndex].findNearest(loc);
 				}
-				
 			}
-			
+
 			return out;
 		}
 		
