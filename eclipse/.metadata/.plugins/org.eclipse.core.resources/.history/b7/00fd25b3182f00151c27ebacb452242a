@@ -1,0 +1,10 @@
+package com.rox.tweaks.proxy;
+
+import com.rox.tweaks.blocks.RoxBlocks;
+
+public class ClientProxy extends CommonProxy{
+	@Override
+	public void registerRenders(){
+		
+	}
+}

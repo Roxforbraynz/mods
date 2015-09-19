@@ -1,0 +1,69 @@
+itemGroup.tabSpellBooks=Spell Books
+
+item.spell_book.name=Spell Book
+item.apple_mana.name=Crystalline Apple
+item.mana_crystal.name=Mana Crystal
+
+tile.mana_crystal_ore.name=Mana Crystal Source
+tile.mana_crystal_block.name=Mana Crystal Block
+
+spell.blazefire=Blazefire
+spell.ghastfire=Ghastfire
+spell.witherblast=Witherblast
+spell.lightning=Lightning
+spell.summon.wolf=Summon Wolf
+spell.summon.skeleton=Raise Skeleton
+spell.summon.wither_skeleton=Raise Wither Skeleton
+spell.summon.zombie=Raise Zombie
+spell.summon.zombie_pigman=Raise Zombie Pigman
+spell.summon.witch=Summon Witch
+spell.summon.spider=Summon Spider
+spell.summon.cave_spider=Summon Cave Spider
+spell.summon.zombie_horse=Raise Zombie Horse
+spell.summon.skeleton_horse=Raise Skeleton Horse
+spell.summon.wither_horse=Raise Wither Horse
+spell.teleport=Teleport
+spell.respawn=Respawn
+spell.polymorph=Polymorph
+spell.shield.fire=Fire Shield
+spell.shield.earth=Earth Shield
+spell.shield.water=Water Shield
+spell.shield.storm=Storm Shield
+spell.shield.frost=Frost Shield
+spell.blazestorm=Blazestorm
+spell.lightningstorm=Lightning Storm
+
+spell.level.1=I
+spell.level.2=II
+spell.level.3=III
+spell.level.4=IV
+spell.level.5=V
+spell.level.6=VI
+spell.level.7=VII
+spell.level.8=VIII
+spell.level.9=IX
+spell.level.10=X
+
+entity.summoned_wolf.name=Wolf
+entity.risen_skeleton.name=Skeleton
+entity.risen_wither_skeleton.name=Wither Skeleton
+entity.risen_zombie.name=Zombie
+entity.risen_zombie_pigman.name=Zombie Pigman
+entity.summoned_witch.name=Witch
+entity.summoned_spider.name=Spider
+entity.summoned_cave_spider.name=Cave Spider
+entity.risen_horse.name=Risen Horse
+
+potion.polymorphed=Polymorphed
+potion.shield.fire=Fire Shield
+potion.shield.earth=Earth Shield
+potion.shield.water=Water Shield
+potion.shield.storm=Storm Shield
+potion.shield.frost=Frost Shield
+potion.feared=Feared
+potion.immunity.projectile=Reflection
+potion.immunity.knockback=Steadfast
+potion.mana.instant=Instant Mana
+potion.mana.instant.postfix=Potion of Mana
+potion.mana.regen=Mana Surge
+potion.mana.regen.postfix=Potion of Mana Surge

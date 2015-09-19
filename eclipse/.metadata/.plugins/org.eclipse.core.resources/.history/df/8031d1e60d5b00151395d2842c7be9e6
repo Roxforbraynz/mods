@@ -1,0 +1,5 @@
+package rox.warpstone.proxy;
+
+public class ClientProxy extends ServerProxy{
+	
+}

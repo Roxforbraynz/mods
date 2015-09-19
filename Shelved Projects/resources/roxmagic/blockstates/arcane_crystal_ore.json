@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "roxmagic:arcane_crystal_ore" },
+            { "model": "roxmagic:arcane_crystal_ore", "y": 90 },
+            { "model": "roxmagic:arcane_crystal_ore", "y": 180 },
+            { "model": "roxmagic:arcane_crystal_ore", "y": 270 }
+        ]
+    }
+}

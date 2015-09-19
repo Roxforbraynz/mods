@@ -1,0 +1,13 @@
+package rox.arcvol.proxy;
+
+import rox.arcvol.items.Vellum;
+import rox.arcvol.items.WeakFireScroll;
+import rox.base.Methods;
+
+public class ClientProxy extends CommonProxy{
+	@Override
+	public void setRenders(){
+		Methods.renderItem(Vellum.vellum, "arcvol");
+		Methods.renderItem(WeakFireScroll.weak_fire_scroll, "arcvol");
+	}
+}

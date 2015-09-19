@@ -1,0 +1,6 @@
+package rox.warpstone.proxy;
+
+public class ServerProxy {
+	public void setRenders(){	
+	}
+}

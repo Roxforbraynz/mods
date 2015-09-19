@@ -1,0 +1,7 @@
+tile.sulfur_ore.name=Sulfur Ore
+tile.potassium_ore.name=Potassium Ore
+item.sulfur.name=Sulfur
+item.potassium.name=Potassium
+item.salt.name=Salt
+
+itemGroup.gunpowderTab=Rox's Tweaks

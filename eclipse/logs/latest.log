@@ -1,0 +1,80 @@
+[18:30:48] [Client thread/INFO]: Setting user: Player641
+[18:30:54] [Client thread/INFO]: LWJGL Version: 2.9.1
+[18:31:03] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Essentia Arcanum, FMLFileResourcePack:Rox Core, FMLFileResourcePack:Rox's Warp Stones
+[18:31:05] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[18:31:05] [Thread-9/INFO]: Initializing LWJGL OpenAL
+[18:31:05] [Thread-9/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[18:31:05] [Thread-9/INFO]: OpenAL initialized.
+[18:31:05] [Sound Library Loader/INFO]: Sound engine started
+[18:31:10] [Client thread/INFO]: Created: 512x512 textures-atlas
+[18:31:13] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Essentia Arcanum, FMLFileResourcePack:Rox Core, FMLFileResourcePack:Rox's Warp Stones
+[18:31:13] [Client thread/INFO]: SoundSystem shutting down...
+[18:31:13] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[18:31:13] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[18:31:13] [Thread-11/INFO]: Initializing LWJGL OpenAL
+[18:31:13] [Thread-11/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[18:31:13] [Thread-11/INFO]: OpenAL initialized.
+[18:31:14] [Sound Library Loader/INFO]: Sound engine started
+[18:31:17] [Client thread/INFO]: Created: 512x512 textures-atlas
+[18:31:24] [Server thread/INFO]: Starting integrated minecraft server version 1.8
+[18:31:24] [Server thread/INFO]: Generating keypair
+[18:31:24] [Server thread/INFO]: Preparing start region for level 0
+[18:31:25] [Server thread/INFO]: Preparing spawn area: 4%
+[18:31:26] [Server thread/INFO]: Preparing spawn area: 49%
+[18:31:28] [Server thread/INFO]: Changing view distance to 12, from 10
+[18:31:31] [Server thread/INFO]: Player641[local:E:b917155e] logged in with entity id 314 at (69.5, 72.0, 71.5)
+[18:31:31] [Server thread/INFO]: Player641 joined the game
+[18:31:41] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@2706cee5[id=34c6f761-a0d4-3d62-b5ee-df15e4530215,name=Player641,properties={},legacy=false]
+com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
+	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:65) ~[YggdrasilAuthenticationService.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:158) [YggdrasilMinecraftSessionService.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:53) [YggdrasilMinecraftSessionService$1.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:50) [YggdrasilMinecraftSessionService$1.class:?]
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3524) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2317) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2280) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2195) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache.get(LocalCache.java:3934) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache.getOrLoad(LocalCache.java:3938) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.get(LocalCache.java:4821) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.getUnchecked(LocalCache.java:4827) [guava-17.0.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillProfileProperties(YggdrasilMinecraftSessionService.java:148) [YggdrasilMinecraftSessionService.class:?]
+	at net.minecraft.client.resources.SkinManager$3.run(SkinManager.java:138) [SkinManager$3.class:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) [?:1.8.0_51]
+	at java.util.concurrent.FutureTask.run(Unknown Source) [?:1.8.0_51]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) [?:1.8.0_51]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) [?:1.8.0_51]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_51]
+[18:31:55] [Server thread/INFO]: [Player641: Given [§3Warp Stone] * 1 to Player641]
+[18:31:55] [Client thread/INFO]: [CHAT] Given [§3Warp Stone] * 1 to Player641
+[18:31:56] [Server thread/INFO]: Player641 has just earned the achievement [Taking Inventory]
+[18:31:56] [Client thread/INFO]: [CHAT] Player641 has just earned the achievement [Taking Inventory]
+[18:32:17] [Client thread/INFO]: [CHAT] §aLocation bound!
+[18:32:21] [Chunk Batcher 0/WARN]: Needed to grow BufferBuilder buffer: Old size 524288 bytes, new size 2621440 bytes.
+[18:32:25] [Thread-11/ERROR]: Error in class 'LibraryLWJGLOpenAL'
+[18:32:25] [Thread-11/ERROR]: Source '158615ee-3128-42a5-ab62-4dbbdf8ba30e' not found in method 'play'
+[18:32:25] [Thread-11/ERROR]: Error in class 'LibraryLWJGLOpenAL'
+[18:32:25] [Thread-11/ERROR]: Source '158615ee-3128-42a5-ab62-4dbbdf8ba30e' not found in method 'play'
+[18:32:49] [Thread-11/ERROR]: Error in class 'LibraryLWJGLOpenAL'
+[18:32:49] [Thread-11/ERROR]: Source 'b54613a1-984f-4eae-a15c-4501d009b631' not found in method 'play'
+[18:32:49] [Thread-11/ERROR]: Error in class 'LibraryLWJGLOpenAL'
+[18:32:49] [Thread-11/ERROR]: Source '808101c5-79a1-4c4a-a386-8fb0e6f2caaa' not found in method 'play'
+[18:32:49] [Thread-11/ERROR]: Error in class 'LibraryLWJGLOpenAL'
+[18:32:49] [Thread-11/ERROR]: Source 'b54613a1-984f-4eae-a15c-4501d009b631' not found in method 'play'
+[18:32:49] [Thread-11/ERROR]: Error in class 'LibraryLWJGLOpenAL'
+[18:32:49] [Thread-11/ERROR]: Source '808101c5-79a1-4c4a-a386-8fb0e6f2caaa' not found in method 'play'
+[18:32:56] [Server thread/INFO]: [Player641: Set own game mode to Creative Mode]
+[18:32:56] [Client thread/INFO]: [CHAT] Your game mode has been updated
+[18:32:58] [Server thread/INFO]: Saving and pausing game...
+[18:32:58] [Server thread/INFO]: Saving chunks for level 'Test World'/Overworld
+[18:32:58] [Server thread/INFO]: Saving chunks for level 'Test World'/Nether
+[18:32:58] [Server thread/INFO]: Saving chunks for level 'Test World'/The End
+[18:33:07] [Server thread/INFO]: Stopping server
+[18:33:07] [Server thread/INFO]: Saving players
+[18:33:07] [Server thread/INFO]: Saving worlds
+[18:33:07] [Server thread/INFO]: Saving chunks for level 'Test World'/Overworld
+[18:33:07] [Server thread/INFO]: Saving chunks for level 'Test World'/Nether
+[18:33:07] [Server thread/INFO]: Saving chunks for level 'Test World'/The End
+[18:33:08] [Client thread/INFO]: Stopping!
+[18:33:08] [Client thread/INFO]: SoundSystem shutting down...
+[18:33:08] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com

@@ -1,0 +1,27 @@
+package rox.warpstone;
+
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+
+public class ItemWarpStone extends Item{
+	//Blank item
+	public static Item warp_stone;
+	
+	//Called in Core to initialize the item. Rendering is handled in ClientProxy.
+	public static void init(){
+		//Tells the blank item to pull code from this class.
+		warp_stone = new ItemWarpStone()
+			//Some settings for the item.
+			
+			//The name of the item when referred to by commands and the .lang file.
+			.setUnlocalizedName("warp_stone")
+			//Stack size, this item will take damage as it's used, so keep this at 1.
+			.setMaxStackSize(1)
+			//The max amount of damage the item can take. THe amount of times an item
+			//can be used is always 1 more than is set.
+			.setMaxDamage(31)
+			//Assigns a creative tab. Since this mod only has one item, I'm assigning
+			//it to a vanilla tab; Tools.
+			.setCreativeTab(CreativeTabs.tabTools);
+	}
+}

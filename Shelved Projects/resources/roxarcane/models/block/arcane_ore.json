@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "roxarcane:blocks/arcane_ore"
+    }
+}

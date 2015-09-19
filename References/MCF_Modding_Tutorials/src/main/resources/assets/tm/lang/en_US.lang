@@ -1,0 +1,4 @@
+item.coord_cache.name=Coordinate Cache
+tile.coord_transporter.name=Coordinate Teleporter
+
+itemGroup.tabTeleport=Teleport Mod

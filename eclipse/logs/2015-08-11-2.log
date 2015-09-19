@@ -1,0 +1,55 @@
+[14:19:51] [Client thread/INFO]: Setting user: Player16
+[14:19:56] [Client thread/INFO]: LWJGL Version: 2.9.1
+[14:20:09] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Rox's Arcanery, FMLFileResourcePack:Rox's Wizardry
+[14:20:11] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[14:20:11] [Thread-9/INFO]: Initializing LWJGL OpenAL
+[14:20:11] [Thread-9/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[14:20:11] [Thread-9/INFO]: OpenAL initialized.
+[14:20:11] [Sound Library Loader/INFO]: Sound engine started
+[14:20:17] [Client thread/INFO]: Created: 512x512 textures-atlas
+[14:20:19] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Rox's Arcanery, FMLFileResourcePack:Rox's Wizardry
+[14:20:20] [Client thread/INFO]: SoundSystem shutting down...
+[14:20:20] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[14:20:20] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[14:20:20] [Thread-11/INFO]: Initializing LWJGL OpenAL
+[14:20:20] [Thread-11/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[14:20:20] [Thread-11/INFO]: OpenAL initialized.
+[14:20:21] [Sound Library Loader/INFO]: Sound engine started
+[14:20:25] [Client thread/INFO]: Created: 512x512 textures-atlas
+[14:20:32] [Server thread/INFO]: Starting integrated minecraft server version 1.8
+[14:20:32] [Server thread/INFO]: Generating keypair
+[14:20:33] [Server thread/INFO]: Preparing start region for level 0
+[14:20:34] [Server thread/INFO]: Preparing spawn area: 5%
+[14:20:35] [Server thread/INFO]: Preparing spawn area: 38%
+[14:20:36] [Server thread/INFO]: Preparing spawn area: 77%
+[14:20:38] [Server thread/INFO]: Changing view distance to 12, from 10
+[14:20:41] [Server thread/INFO]: Player16[local:E:8e2113d3] logged in with entity id 342 at (59.63106117696035, 71.0, 73.44201074598816)
+[14:20:41] [Server thread/INFO]: Player16 joined the game
+[14:20:46] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 2829ms behind, skipping 56 tick(s)
+[14:20:51] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@2f21994d[id=af41db55-779a-3c41-8791-5bbf8bb38fd0,name=Player16,properties={},legacy=false]
+com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
+	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:65) ~[YggdrasilAuthenticationService.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:158) [YggdrasilMinecraftSessionService.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:53) [YggdrasilMinecraftSessionService$1.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:50) [YggdrasilMinecraftSessionService$1.class:?]
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3524) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2317) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2280) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2195) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache.get(LocalCache.java:3934) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache.getOrLoad(LocalCache.java:3938) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.get(LocalCache.java:4821) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.getUnchecked(LocalCache.java:4827) [guava-17.0.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillProfileProperties(YggdrasilMinecraftSessionService.java:148) [YggdrasilMinecraftSessionService.class:?]
+	at net.minecraft.client.resources.SkinManager$3.run(SkinManager.java:138) [SkinManager$3.class:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) [?:1.8.0_51]
+	at java.util.concurrent.FutureTask.run(Unknown Source) [?:1.8.0_51]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) [?:1.8.0_51]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) [?:1.8.0_51]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_51]
+[14:20:57] [Server thread/INFO]: Player16 has just earned the achievement [Taking Inventory]
+[14:20:57] [Client thread/INFO]: [CHAT] Player16 has just earned the achievement [Taking Inventory]
+[14:21:04] [Server thread/INFO]: Saving and pausing game...
+[14:21:04] [Server thread/INFO]: Saving chunks for level 'Test World'/Overworld
+[14:21:05] [Server thread/INFO]: Saving chunks for level 'Test World'/Nether
+[14:21:05] [Server thread/INFO]: Saving chunks for level 'Test World'/The End

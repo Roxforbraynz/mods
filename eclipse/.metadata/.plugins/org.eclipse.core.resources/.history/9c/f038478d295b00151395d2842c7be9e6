@@ -1,0 +1,9 @@
+package rox.warpstone.proxy;
+
+public class ClientProxy extends CommonProxy{
+	@Override
+	public void setRenders(){
+		//Render items and blocks here using Methods.renderItem() and Methods.renderBlock().
+		//This should only be client-side.
+	}
+}

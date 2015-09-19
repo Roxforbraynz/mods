@@ -1,0 +1,13 @@
+package rox.warpstone;
+
+import net.minecraftforge.fml.common.Mod;
+
+@Mod(
+	modid = "warpstone",
+	name = "Rox's Warp Stones",
+	version = "a1"
+)
+
+public class Core {
+
+}
