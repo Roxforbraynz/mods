@@ -128,8 +128,6 @@ public class Octree {
 											((index&0x2)!=0)?parent.data.getY()+(parent.yheight/4.0):parent.data.getY()-(parent.yheight/4.0),
 											((index&0x4)!=0)?parent.data.getZ()+(parent.zdepth/4.0):parent.data.getZ()-(parent.zdepth/4.0));
 				
-				System.err.println("Location: (" + inLoc.getX() + "," + inLoc.getY() + "," + inLoc.getZ() + ")");
-				
 				//Make the new interior child
 				parent.children[index] = new OctreeNode(inLoc, parent, true);
 				//Insert this node back into the tree.
@@ -255,13 +253,13 @@ public class Octree {
 			int index = 0;
 			//If the x value of the node is smaller than the x value of the
 			//provided point, set the 1's place bit
-			index = (((int)(loc.getX() - this.data.getX())) >> 31 ) & 0x1;
+			index = (((int)(this.data.getX() - loc.getX())) >> 31 ) & 0x1;
 			//If the y value of the node is smaller than the y value of the
 			//provided point, set the 2's place bit
-			index = (((((int)(loc.getY() - this.data.getY())) >> 31 ) & 0x1 ) << 1 ) ^ index;
+			index = ((((int)(this.data.getY() - loc.getY())) >> 30 ) & 0x2 ) ^ index;
 			//If the z value of the node is smaller than the z value of the
 			//provided point, set the 4's place bit
-			index = (((((int)(loc.getZ() - this.data.getZ())) >> 31 ) & 0x1 ) << 2 ) ^ index;
+			index = ((((int)(this.data.getZ() - loc.getZ())) >> 29 ) & 0x4 ) ^ index;
 			
 			return index;
 		}
