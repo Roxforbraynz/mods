@@ -55,4 +55,9 @@ public class Location {
 		return Math.pow(this.x - loc.x,2) + Math.pow(this.y - loc.y,2) + Math.pow(this.z - loc.z,2);
 	}
 	
+	@Override
+	public String toString() {
+		return "Dimension: " + this.dim + ", (" + this.x + ", " + this.y + ", " + this.z + ")";
+	}
+	
 }

@@ -1,5 +1,8 @@
 package rox.warpstone.test;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import rox.warpstone.util.Location;
 import rox.warpstone.util.Octree;
 
@@ -82,7 +85,7 @@ public class Main {
 	
 	public static void octreeTest() {
 		Location octreePoints[] = new Location[10];
-//		Location testPoints[] = new Location[10];
+		Location testPoints[] = new Location[10];
 		
 		//Test points to go in the octree
 		octreePoints[0] = new Location(0,5,4,1);
@@ -103,8 +106,18 @@ public class Main {
 		for (int i=0; i<10; i++)
 			tree.insert(octreePoints[i]);
 		
+		
+		//Check to make sure all points are in there.
+		Collection<Location> points = tree.getPoints();
+		Iterator<Location> i = points.iterator();
+		
+		while (i.hasNext()) {
+			System.out.println(i.next().toString());
+		}
+		
+		
 		//Test points to test against the octree
-		//testPoints[0] = new Location(0,0,0,1);
-		//testPoints[1] = new Location(0,-3,4,-2);
+		testPoints[0] = new Location(0,0,0,1);
+		testPoints[1] = new Location(0,-3,4,-2);
 	}
 }
