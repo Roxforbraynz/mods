@@ -110,6 +110,7 @@ public class Main {
 		//Check to make sure all points are in there.
 		Collection<Location> points = tree.getPoints();
 		Iterator<Location> i = points.iterator();
+		System.out.println("Insert and Point Retrieval Test");
 		
 		while (i.hasNext()) {
 			System.out.println(i.next().toString());
@@ -119,5 +120,10 @@ public class Main {
 		//Test points to test against the octree
 		testPoints[0] = new Location(0,0,0,1);
 		testPoints[1] = new Location(0,-3,4,-2);
+		
+		System.out.println("Find Nearest Test");
+		
+		System.out.println(tree.findNearest(testPoints[0]).toString());
+		System.out.println(tree.findNearest(testPoints[1]).toString());
 	}
 }
