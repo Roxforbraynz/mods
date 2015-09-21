@@ -6,6 +6,8 @@ import java.util.Iterator;
 import pnb.utils.geometry.Location;
 import pnb.utils.geometry.trees.Octree;
 
+//Test code. Will not remain in the library.
+
 public class Main {
 
 	public static void main(String[] args) {
