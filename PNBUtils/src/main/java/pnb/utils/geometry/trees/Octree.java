@@ -1,7 +1,10 @@
-package rox.warpstone.util;
+package pnb.utils.geometry.trees;
 
 import java.util.Collection;
 import java.util.LinkedList;
+
+import pnb.utils.geometry.Location;
+
 
 public class Octree {
 	

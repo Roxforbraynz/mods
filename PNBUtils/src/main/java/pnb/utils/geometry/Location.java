@@ -1,4 +1,4 @@
-package rox.warpstone.util;
+package pnb.utils.geometry;
 
 public class Location {
 	

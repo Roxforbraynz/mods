@@ -1,10 +1,10 @@
-package rox.warpstone.test;
+package pnb.test;
 
 import java.util.Collection;
 import java.util.Iterator;
 
-import rox.warpstone.util.Location;
-import rox.warpstone.util.Octree;
+import pnb.utils.geometry.Location;
+import pnb.utils.geometry.trees.Octree;
 
 public class Main {
 
