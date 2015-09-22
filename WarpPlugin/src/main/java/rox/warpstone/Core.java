@@ -11,8 +11,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import pnb.utils.services.ItemService;
 import rox.warpstone.proxy.CommonProxy;
-import rox.warpstone.services.ItemService;
 
 @Mod(
 	modid = "warpstone",

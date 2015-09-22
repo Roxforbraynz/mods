@@ -5,7 +5,7 @@ import com.google.inject.Inject;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import rox.warpstone.services.ItemService;
+import pnb.utils.services.ItemService;
 
 public class ClientProxy extends CommonProxy{
 	

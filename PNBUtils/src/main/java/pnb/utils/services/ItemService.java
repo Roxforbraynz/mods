@@ -1,7 +1,8 @@
-package rox.warpstone.services;
+package pnb.utils.services;
 
 import java.util.HashMap;
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import net.minecraft.item.Item;
@@ -12,6 +13,7 @@ public class ItemService {
 	//Our little collection of custom items for quick lookup.
 	private final HashMap<String,Item> customItems;
 	
+	@Inject
 	public ItemService() {
 		customItems = new HashMap<String,Item>();
 	}
