@@ -10,7 +10,7 @@ import pnb.utils.services.ItemService;
 public class ClientProxy extends CommonProxy{
 	
 	@Inject
-	ItemService is;
+	private ItemService is;
 	
 	@Override
 	//This method is run in the Core class.
