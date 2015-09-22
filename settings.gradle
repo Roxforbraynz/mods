@@ -1,1 +1,5 @@
-include "WarpPlugin", "ArcVol", "PNBUtils"
+include "WarpPlugin", "ArcVol", "PNBUtils", "OpenRP-Core", "OpenRP-Roll", "OpenRP-Professions"
+
+project(':OpenRP-Core').projectDir = new File(settingsDir, 'OpenRP/Core')
+project(':OpenRP-Roll').projectDir = new File(settingsDir, 'OpenRP/Roll')
+project(':OpenRP-Professions').projectDir = new File(settingsDir, 'OpenRP/Professions')

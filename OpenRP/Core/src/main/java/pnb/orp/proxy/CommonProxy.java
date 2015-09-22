@@ -1,4 +1,5 @@
-package rox.warpstone.proxy;
+package pnb.orp.proxy;
+
 
 public class CommonProxy {
 	public void setRenders(){	
