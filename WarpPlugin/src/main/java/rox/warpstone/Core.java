@@ -28,7 +28,7 @@ public class Core {
 	private CommonProxy proxy;
 	
 	@Inject
-	ItemService is;
+	private ItemService is;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
