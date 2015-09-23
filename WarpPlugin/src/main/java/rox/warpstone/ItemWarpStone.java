@@ -115,6 +115,7 @@ public class ItemWarpStone extends Item{
 	}
 	
 	//Tells the client to add info to the item's tooltip.
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced){
