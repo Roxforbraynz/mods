@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import pnb.utils.services.BlockService;
 import pnb.utils.services.ItemService;
 import rox.warpstone.proxy.CommonProxy;
 
@@ -29,6 +30,9 @@ public class Core {
 	
 	@Inject
 	private ItemService is;
+	
+	@Inject
+	private BlockService bs;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
