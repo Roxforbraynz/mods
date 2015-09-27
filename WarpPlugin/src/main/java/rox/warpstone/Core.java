@@ -1,6 +1,8 @@
 package rox.warpstone;
 
+import com.google.inject.Guice;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -13,6 +15,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import pnb.utils.services.BlockService;
 import pnb.utils.services.ItemService;
+import rox.warpstone.guice.WarpStoneModule;
 import rox.warpstone.proxy.CommonProxy;
 
 @Mod(
@@ -29,26 +32,28 @@ public class Core {
 	//This MUST remain static. If it's not static then it causes a crash.
 	private static CommonProxy proxy;
 	
-	@Inject
 	private ItemService is;
-	
-	@Inject
 	private BlockService bs;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		
-		//Initialize and register our custom items
-		is.registerItem("warp_stone", new ItemWarpStone()); //Crash occurred with the console pointing at this line. http://pastebin.com/fJwA35mC
-		//Initialize and register our custom blocks
-		bs.registerBlock("warp_pillar", new BlockWarpPillar());
-
-		
-		
 	}
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+		
+		// Initialize Sponge
+		Injector i = Guice.createInjector(new WarpStoneModule());
+		proxy.setInjector(i);
+        is = i.getInstance(ItemService.class);
+        bs = i.getInstance(BlockService.class);
+		
+		//Initialize and register our custom items
+		is.registerItem("warp_stone", new ItemWarpStone()); //Crash occurred with the console pointing at this line. http://pastebin.com/fJwA35mC
+		//Initialize and register our custom blocks
+		bs.registerBlock("warp_pillar", new BlockWarpPillar());
+		
 		//Sets the item's model and texture.
 		//This is done after the item has been initialized.
 		proxy.setRenders();

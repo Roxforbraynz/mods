@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemWarpStone extends Item{
+public final class ItemWarpStone extends Item{
 	
 	public ItemWarpStone() {
 		//Some settings for the item.
