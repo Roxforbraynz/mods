@@ -26,7 +26,8 @@ public class Core {
 		clientSide = "rox.warpstone.proxy.ClientProxy",
 		serverSide = "rox.warpstone.proxy.CommonProxy"
 	)
-	private CommonProxy proxy;
+	//This MUST remain static. If it's not static then it causes a crash.
+	private static CommonProxy proxy;
 	
 	@Inject
 	private ItemService is;
@@ -37,8 +38,10 @@ public class Core {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		
-		//Initialize and register our custom item
-		is.registerItem("warp_stone", new ItemWarpStone());
+		//Initialize and register our custom items
+		is.registerItem("warp_stone", new ItemWarpStone()); //Crash occurred with the console pointing at this line. http://pastebin.com/fJwA35mC
+		//Initialize and register our custom blocks
+		bs.registerBlock("warp_pillar", new BlockWarpPillar());
 
 		
 		

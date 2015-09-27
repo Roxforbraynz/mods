@@ -2,15 +2,20 @@ package rox.warpstone.proxy;
 
 import com.google.inject.Inject;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import pnb.utils.services.BlockService;
 import pnb.utils.services.ItemService;
 
 public class ClientProxy extends CommonProxy{
 	
 	@Inject
 	private ItemService is;
+	
+	@Inject
+	private BlockService bs;
 	
 	@Override
 	//This method is run in the Core class.
@@ -24,5 +29,13 @@ public class ClientProxy extends CommonProxy{
 				warpStone, 
 				0, 
 				new ModelResourceLocation("warpstone:" + warpStone.getUnlocalizedName().substring(5), "inventory"));
+		
+		//Rendering the Warp Pillar
+		Block warpPillar = bs.getBlock("warp_pillar");
+		Item warpPillarItem = Item.getItemFromBlock(warpPillar);
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(
+				warpPillarItem,
+				0,
+				new ModelResourceLocation("warpstone:" + warpPillar.getUnlocalizedName().substring(5), "inventory"));
 	}
 }
