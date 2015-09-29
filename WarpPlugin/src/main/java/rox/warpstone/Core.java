@@ -1,7 +1,6 @@
 package rox.warpstone;
 
 import com.google.inject.Guice;
-import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 import net.minecraft.init.Items;
@@ -50,7 +49,7 @@ public class Core {
         bs = i.getInstance(BlockService.class);
 		
 		//Initialize and register our custom items
-		is.registerItem("warp_stone", new ItemWarpStone()); //Crash occurred with the console pointing at this line. http://pastebin.com/fJwA35mC
+		is.registerItem("warp_stone", new ItemWarpStone());
 		//Initialize and register our custom blocks
 		bs.registerBlock("warp_pillar", new BlockWarpPillar());
 		
