@@ -74,6 +74,7 @@ subprojects {
 project(':PNBUtils') {
 	dependencies {
 		compile 'com.google.inject:guice:4.+'
+		compile 'com.google.inject.extensions:guice-assistedinject:4.+'
 		compile 'com.h2database:h2:1.4.+'
 	}
 }

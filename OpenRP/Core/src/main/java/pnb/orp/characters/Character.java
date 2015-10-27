@@ -32,40 +32,40 @@ import java.util.UUID;
 
 public final class Character {
 	
-	private final UUID _uuid;
-	private final String _name;
-	private final String _cardName;
-	private final int _age;
-	private final String _race;
-	private final String _subrace;
-	private final String _bio;
-	private final boolean _active;
+	private final UUID uuid;
+	private final String name;
+	private final String cardName;
+	private final int age;
+	private final String race;
+	private final String subrace;
+	private final String bio;
+	private final boolean active;
 	
 	//Expansion Fields
     
     private Character(CharacterBuilder builder, int save, Connection conn) {
     	
     	//Build the class
-    	_uuid = builder._uuid;
-    	_name = builder._name;
-    	_cardName = builder._cardName;
-    	_age = builder._age;
-    	_race = builder._race;
-    	_subrace = builder._subrace;
-    	_bio = builder._bio;
-    	_active = (save==1)?true:builder._active;
+    	this.uuid = builder.uuid;
+    	this.name = builder.name;
+    	this.cardName = builder.cardName;
+    	this.age = builder.age;
+    	this.race = builder.race;
+    	this.subrace = builder.subrace;
+    	this.bio = builder.bio;
+    	this.active = (save==1)?true:builder.active;
     	
     	
     	//If told to save, then save the character as a new entry.
     	if (save>0) {
     		//Save new character to DB.
         	try {
-    			String sql = (save==1)?"INSERT INTO Characters VALUES ('" + _uuid.toString() + "', '" + _name + 
-    					"', '" + _cardName + "', " + _age + ", '" + _race + "', '" + _subrace + "', " +
-    					_active + ", '" + _bio + "' )":
-    						"UPDATE Characters SET name='" + _name + "', age=" + _age + ", race='" + _race + 
-    						"', subrace='" + _subrace + "', bio='" + _bio + "', active=" + _active + 
-    						"WHERE uuid='" + _uuid.toString() + "' AMD cardName='" + _cardName + "'";
+    			String sql = (save==1)?"INSERT INTO Characters VALUES ('" + this.uuid.toString() + "', '" + this.name + 
+    					"', '" + this.cardName + "', " + this.age + ", '" + this.race + "', '" + this.subrace + "', " +
+    					this.active + ", '" + this.bio + "' )":
+    						"UPDATE Characters SET name='" + this.name + "', age=" + this.age + ", race='" + this.race + 
+    						"', subrace='" + this.subrace + "', bio='" + this.bio + "', active=" + this.active + 
+    						"WHERE uuid='" + this.uuid.toString() + "' AND cardName='" + this.cardName + "'";
     			
     			conn.createStatement().execute(sql);
     		} catch (SQLException e) {
@@ -80,7 +80,7 @@ public final class Character {
 	 * @return the active state.
 	 */
     public boolean isActive() {
-    	return _active;
+    	return this.active;
     }
 
 	public void printCard(int page) {
@@ -88,71 +88,73 @@ public final class Character {
 		
 	}
     
-    public static CharacterBuilder builder(UUID player, String cardName) {
-    	return new CharacterBuilder(player, cardName);
+    public static CharacterBuilder builder(Connection conn, UUID player, String cardName) {
+    	return new CharacterBuilder(conn, player, cardName);
     }
     
     public static class CharacterBuilder {
-    	private UUID _uuid;
-    	private String _name;
-    	private String _cardName;
-    	private int _age;
-    	private String _race;
-    	private String _subrace;
-    	private String _bio;
-    	private boolean _active;
+    	private UUID uuid;
+    	private String name;
+    	private String cardName;
+    	private int age;
+    	private String race;
+    	private String subrace;
+    	private String bio;
+    	private boolean active;
+    	private Connection conn;
     	
-    	public CharacterBuilder(UUID uuid, String cardName) {
-    		_uuid = uuid;
-    		_cardName = cardName;
-    		_name = null;
-    		_age = -1;
-    		_race = null;
-    		_subrace = null;
-    		_bio = null;
-    		_active = false;
+    	public CharacterBuilder(Connection conn, UUID uuid, String cardName) {
+    		this.uuid = uuid;
+    		this.cardName = cardName;
+    		this.name = null;
+    		this.age = -1;
+    		this.race = null;
+    		this.subrace = null;
+    		this.bio = null;
+    		this.active = false;
+    		
     	}
     	
     	public CharacterBuilder name(String name) {
-    		_name = name;
+    		this.name = name;
     		return this;
     	}
     	
     	public CharacterBuilder age(int age) {
-    		_age = age;
+    		this.age = age;
     		return this;
     	}
     	
     	public CharacterBuilder race(String race) {
-    		_race = race;
+    		this.race = race;
     		return this;
     	}
     	
     	public CharacterBuilder subrace(String subrace) {
-    		_subrace = subrace;
+    		this.subrace = subrace;
     		return this;
     	}
     	
     	public CharacterBuilder bio(String bio) {
-    		_bio = bio;
+    		this.bio = bio;
     		return this;
     	}
     	
     	public CharacterBuilder active(boolean active) {
-    		_active=active;
+    		this.active=active;
     		return this;
     	}
     	
-    	public Character buildAndSave(Connection conn) {
-    		return new Character(this, 1, conn);
+    	public Character buildAndSave() {
+    		return new Character(this, 1, this.conn);
     	}
     	
     	public Character build() {
     		return new Character(this, 0, null);
     	}
     	
-    	public Character buildAndUpdate(Connection conn) {
-    		return new Character(this, 2, conn);
+    	public Character buildAndUpdate() {
+    		return new Character(this, 2, this.conn);
     	}
     }
 

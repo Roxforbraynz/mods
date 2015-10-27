@@ -27,18 +27,21 @@
  */
 package pnb.orp;
 
-import java.util.HashMap;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
-import javax.annotation.Resource;
-
-import net.minecraft.item.Item;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
+import pnb.orp.cache.ORPCache;
+import pnb.orp.handlers.ChatHandler;
 import pnb.orp.proxy.CommonProxy;
+import png.orp.guice.ORPModule;
 
 @Mod(
 	modid = "orpcore",
@@ -53,22 +56,40 @@ public class Core {
 	)
 	public CommonProxy proxy;
 	
-	//Our little collection of custom items for quick lookup.
-	@Resource
-	public HashMap<String,Item> customItems;
+	private Injector injector; //Guice Dependency Injector
 	
+	/**
+	 * Pre-initialization Event
+	 * Before we initialize the rest of the plugin, make sure the dependency
+	 * injector is set up.
+	 * @param event
+	 */
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		
+		//Initialize Dependency Injector
+		injector = Guice.createInjector(new ORPModule());
+		//proxy.setInjector(i);
+		event.getSuggestedConfigurationFile().getAbsolutePath();
 	}
 	
+	/**
+	 * Initialization Event
+	 * Set up our Event Handlers
+	 * @param event
+	 */
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		
+		//Register the chat handler, which has been instantiated by Guice
+		MinecraftForge.EVENT_BUS.register(injector.getInstance(ChatHandler.class));
 	}
 	
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		
+	}
+	
+	@EventHandler
+	public void serverStopping(FMLServerStoppingEvent event) {
+		injector.getInstance(ORPCache.class).shutdownCache();
 	}
 }
