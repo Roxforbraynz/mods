@@ -37,6 +37,8 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
+import pnb.orp.cache.ORPCache;
 import pnb.orp.handlers.ChatHandler;
 import pnb.orp.proxy.CommonProxy;
 import png.orp.guice.ORPModule;
@@ -67,6 +69,7 @@ public class Core {
 		//Initialize Dependency Injector
 		injector = Guice.createInjector(new ORPModule());
 		//proxy.setInjector(i);
+		event.getSuggestedConfigurationFile().getAbsolutePath();
 	}
 	
 	/**
@@ -83,5 +86,10 @@ public class Core {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		
+	}
+	
+	@EventHandler
+	public void serverStopping(FMLServerStoppingEvent event) {
+		injector.getInstance(ORPCache.class).shutdownCache();
 	}
 }

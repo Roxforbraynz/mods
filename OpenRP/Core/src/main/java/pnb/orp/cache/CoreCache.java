@@ -5,8 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
-import javax.sql.DataSource;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -16,11 +14,13 @@ import pnb.orp.characters.Character.CharacterBuilder;
 @Singleton
 public class CoreCache implements ORPCache {
 	
-	private final DataSource dbDataSource;
+	private final Connection dbConnection;
+	private final String configDirectory;
 	
 	@Inject
-	private CoreCache() {
-		this.dbDataSource = null;
+	private CoreCache(String configDirectory) {
+		this.configDirectory = configDirectory;
+		this.dbConnection = null; 
 	}
 	
 	/**
@@ -42,14 +42,15 @@ public class CoreCache implements ORPCache {
 	 */
 	@Override
 	public synchronized Character loadCharacterAndMakeActive(UUID uuid, String cardName) {
+		//Initialize our Character
 		Character character = null;
+		
+		//Try to load the character and make them active
     	try {
-			Connection conn = getDataSource().getConnection();
+			//this.dbConnection.setAutoCommit(true);
+			this.dbConnection.createStatement().executeQuery("UPDATE Characters SET active=false WHERE UUID='" + uuid.toString() + "' AND active=true");
 			
-			conn.setAutoCommit(true);
-			conn.createStatement().executeQuery("UPDATE Characters SET active=false WHERE UUID='" + uuid.toString() + "' AND active=true");
-			
-			ResultSet result = conn.createStatement().executeQuery("SELECT * FROM Characters WHERE UUID='" + uuid.toString() + "' AND cardName='" + cardName + "'");
+			ResultSet result = this.dbConnection.createStatement().executeQuery("SELECT * FROM Characters WHERE UUID='" + uuid.toString() + "' AND cardName='" + cardName + "'");
 			
 			result.first();
 			
@@ -62,7 +63,6 @@ public class CoreCache implements ORPCache {
 				.active(true)
 				.buildAndUpdate();
 			
-			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -78,30 +78,34 @@ public class CoreCache implements ORPCache {
 	 */
 	@Override
 	public synchronized CharacterBuilder loadCharacterBuilder(UUID uuid, String cardName) {
+		//Initialize our CharacterBuilder and SQL statement
 		CharacterBuilder character = null;
-		
 		String sql = "";
 		
+		//If null card name, load the currently active character
 		if (cardName==null)
 			sql = "SELECT * FROM Characters WHERE UUID='" + uuid.toString() + "' AND active=true";
+		//Else load the requested character for editing
 		else
 			sql = "SELECT * FROM Characters WHERE UUID='" + uuid.toString() + "' AND cardName='" + cardName + "'";
 		
+		//Try to load the character
     	try {
-			Connection conn = getDataSource().getConnection();
-			ResultSet result = conn.createStatement().executeQuery(sql);
+    		//Run the query
+			ResultSet result = this.dbConnection.createStatement().executeQuery(sql);
 			
+			//Set the pointer to the first result
 			result.first();
 			
-			character = Character.builder(this.dbDataSource.getConnection(), (UUID)result.getObject("uuid"), result.getString("cardName"))
+			//Load the character
+			character = Character.builder(this.dbConnection, (UUID)result.getObject("uuid"), result.getString("cardName"))
 				.name(result.getString("name"))
 				.age(result.getInt("age"))
 				.race(result.getString("race"))
 				.subrace(result.getString("subrace"))
 				.bio(result.getString("bio"))
 				.active(result.getBoolean("active"));
-
-			conn.close();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -110,8 +114,12 @@ public class CoreCache implements ORPCache {
 	}
 
 	@Override
-	public synchronized DataSource getDataSource() throws SQLException {
-		return this.dbDataSource;
+	public void shutdownCache() {
+		try {
+			this.dbConnection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
 }

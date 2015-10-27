@@ -1,9 +1,6 @@
 package pnb.orp.cache;
 
-import java.sql.SQLException;
 import java.util.UUID;
-
-import javax.sql.DataSource;
 
 import com.google.inject.Singleton;
 
@@ -19,5 +16,5 @@ public interface ORPCache {
 	Character loadCharacter(UUID uuid, String cardName);
 	Character loadCharacterAndMakeActive(UUID uuid, String cardName);
 	CharacterBuilder loadCharacterBuilder(UUID uuid, String cardName);
-	DataSource getDataSource() throws SQLException;
+	void shutdownCache();
 }

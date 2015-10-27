@@ -11,6 +11,7 @@ public class ORPModule extends AbstractModule {
 	protected void configure() {
 		//Bind our implementation of the cache to the interface.
 		bind(ORPCache.class).to(CoreCache.class);
+		//install(new FactoryModuleBuilder().implement(ORPCache.class, CoreCache.class).build(CoreCacheFactory.class));
 	}
 
 }
