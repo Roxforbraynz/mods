@@ -1,4 +1,4 @@
-package rox.warpstone.guice;
+package pnb.warpstone.guice;
 
 import com.google.inject.AbstractModule;
 

@@ -1,4 +1,4 @@
-package rox.warpstone.proxy;
+package pnb.warpstone.proxy;
 
 import com.google.inject.Injector;
 

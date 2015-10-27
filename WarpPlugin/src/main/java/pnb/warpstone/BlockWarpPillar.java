@@ -1,4 +1,4 @@
-package rox.warpstone;
+package pnb.warpstone;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

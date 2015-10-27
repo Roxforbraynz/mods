@@ -1,4 +1,4 @@
-package rox.warpstone;
+package pnb.warpstone;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -14,8 +14,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import pnb.utils.services.BlockService;
 import pnb.utils.services.ItemService;
-import rox.warpstone.guice.WarpStoneModule;
-import rox.warpstone.proxy.CommonProxy;
+import pnb.warpstone.guice.WarpStoneModule;
+import pnb.warpstone.proxy.CommonProxy;
 
 @Mod(
 	modid = "warpstone",
