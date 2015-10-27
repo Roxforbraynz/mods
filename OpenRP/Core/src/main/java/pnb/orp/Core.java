@@ -54,8 +54,14 @@ public class Core {
 	)
 	public CommonProxy proxy;
 	
-	private Injector injector;
+	private Injector injector; //Guice Dependency Injector
 	
+	/**
+	 * Pre-initialization Event
+	 * Before we initialize the rest of the plugin, make sure the dependency
+	 * injector is set up.
+	 * @param event
+	 */
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		//Initialize Dependency Injector
@@ -63,6 +69,11 @@ public class Core {
 		//proxy.setInjector(i);
 	}
 	
+	/**
+	 * Initialization Event
+	 * Set up our Event Handlers
+	 * @param event
+	 */
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		//Register the chat handler, which has been instantiated by Guice

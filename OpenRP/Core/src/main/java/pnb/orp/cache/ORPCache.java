@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 
 import com.google.inject.Singleton;
 
+import pnb.orp.characters.Character;
 import pnb.orp.characters.Character.CharacterBuilder;
 
 @Singleton
