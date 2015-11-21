@@ -2,7 +2,6 @@ package rox.arcvol.items;
 
 import java.util.List;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -31,8 +30,6 @@ public class WeakEnderEssence extends Item{
 	
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ){
-		Minecraft mc = Minecraft.getMinecraft();
-		
 		if(player.isSneaking()){
 			if(stack.getTagCompound() == null){
 				stack.setTagCompound(new NBTTagCompound());
@@ -50,6 +47,7 @@ public class WeakEnderEssence extends Item{
 		return false;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced){

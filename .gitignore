@@ -46,3 +46,14 @@ Thumbs.db
 **/.cache
 **/.metadata/
 **/.recommenders/
+
+# Custom Files #
+################
+**/Vanilla/
+**/mods/
+**/saves/
+**/logs/
+**/crash-reports/
+**/config/
+**/usernamecache.json
+**/config/

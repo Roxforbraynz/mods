@@ -1,4 +1,4 @@
-include "WarpPlugin", "ArcVol", "PNBUtils", "OpenRP-Core", "OpenRP-Roll", "OpenRP-Professions"
+include "WarpPlugin", "ArcVol", "OreChunks", "LootPiles", "PNBUtils", "OpenRP-Core", "OpenRP-Roll", "OpenRP-Professions", "RoxLeather", "SitWhistle", "RoxMagic"
 
 project(':OpenRP-Core').projectDir = new File(settingsDir, 'OpenRP/Core')
 project(':OpenRP-Roll').projectDir = new File(settingsDir, 'OpenRP/Roll')

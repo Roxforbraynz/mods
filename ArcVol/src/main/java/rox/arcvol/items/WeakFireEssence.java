@@ -1,7 +1,5 @@
 package rox.arcvol.items;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -28,6 +26,27 @@ public class WeakFireEssence extends Item{
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ){
 		pos = pos.offset(side);
+		
+		//Fix this later. It currently only does the center block.
+		for(int z = -1; z <= 1; z++){
+			for(int y = -1; y <= 1; y++){
+				for(int x = -1; x <= 1; x++){
+					BlockPos curPos = pos;
+					curPos.add(x, y, z);
+					
+					if(world.isAirBlock(curPos)){
+						world.setBlockState(curPos, Blocks.fire.getDefaultState());
+					}
+				}
+			}
+		}
+		
+		
+		stack.damageItem(1, player);
+		return true;
+		
+		//This is an abomination and I should be ashamed. I'm leaving this here as a monument to my sins.
+		/*pos = pos.offset(side);
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
@@ -114,9 +133,6 @@ public class WeakFireEssence extends Item{
 			if(world.isAirBlock(pos.west())){
 				world.setBlockState(pos.west(), fire);
 			}
-		}	
-		
-		stack.damageItem(1, player);
-		return true;
+		}*/
 	}
 }

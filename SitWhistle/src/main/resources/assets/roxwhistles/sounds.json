@@ -1,0 +1,12 @@
+{
+    "item.whistle":
+    {
+        "category": "player",
+        "sounds":
+        [
+            "whistle1",
+            "whistle2",
+            "whistle3"
+        ]
+    }
+}

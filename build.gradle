@@ -18,9 +18,9 @@ buildscript {
 subprojects {
 	apply plugin: 'forge'
 
-	version = "1.8-A1"
-	group= "rox.base" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-	archivesBaseName = "roxcore"
+	version = "1.8-v1"
+	group= "rox.whistle" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+	archivesBaseName = "roxwhistles"
 
 	minecraft {
 		version = "1.8-11.14.3.1450"
@@ -104,4 +104,7 @@ project('OpenRP-Professions') {
 	dependencies {
 		compile project(':PNBUtils')
 	}
+}
+
+project(':RoxLeather') {
 }
